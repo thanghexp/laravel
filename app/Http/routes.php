@@ -14,3 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('ThemSanPham', function(){
+    $sanpham = new App\SanPham();
+    $sanpham->TenSP = "San Pham";
+    $sanpham->HinhSP = "abcabc";
+    $sanpham->Gia = 1000;
+    $sanpham->save();
+    echo 'Da them san pham';
+});
+
+Route::get('articles', 'ArticlesController@index');
+Route::get('articles/create', 'ArticlesController@create');
+Route::post('articles/create', 'ArticlesController@store');
+
+//Route::resource('articles', 'ArticlesController');
