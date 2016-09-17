@@ -70,7 +70,10 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
+        die;
         $article = Articles::findOrFail($id);
+
+        print_r($article)
 
         return view('edit', compact('article'));
     }
@@ -88,6 +91,10 @@ class ArticlesController extends Controller
         $article->update($request->all());
         
         return redirect('articles.edit');
+    }
+
+    public function dmeo() {
+
     }
     
 }
