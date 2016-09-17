@@ -46,7 +46,7 @@ class ArticlesController extends Controller
      * Save one recored for Article Table
      *
      * @param object $article
-     *
+     *1
      */
     public function store(CheckArticlesRequest $request)
     {
@@ -70,12 +70,9 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
-        die;
-        $article = Articles::findOrFail($id);
+        $articles = Articles::findOrFail($id);
 
-        print_r($article)
-
-        return view('edit', compact('article'));
+        return view('articles.edit', compact('articles'));
     }
 
     /**
@@ -84,17 +81,14 @@ class ArticlesController extends Controller
      * @param array $data
      * @return
      */
-    public function update($id, Request $request) 
+    public function update($id, CheckArticlesRequest $request) 
     {
         $article = Articles::findOrFail($id);
         
         $article->update($request->all());
         
-        return redirect('articles.edit');
+        return redirect('edit');
     }
 
-    public function dmeo() {
-
-    }
     
 }

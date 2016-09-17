@@ -24,8 +24,13 @@ Route::get('ThemSanPham', function(){
     echo 'Da them san pham';
 });
 
-Route::get('articles', 'ArticlesController@index');
-Route::get('articles/create', 'ArticlesController@create');
-Route::post('articles/create', 'ArticlesController@store');
+//Route::get('articles', 'ArticlesController@index');
+//Route::get('articles/create', 'ArticlesController@create');
+//Route::post('articles/create', 'ArticlesController@store');
 
-//Route::resource('articles', 'ArticlesController');
+Route::resource('articles', 'ArticlesController');
+
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController'
+]);
