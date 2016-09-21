@@ -24,9 +24,9 @@ class CheckArticlesRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|min:6',
+            'title' => 'required|min:6',
             'author' => 'required',
-            'created_at' => 'required|date'
+            'content' => 'required'
         ];
     }
 }

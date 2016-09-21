@@ -37,7 +37,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        $data['name'] = 'LeePhuoc';
+        $data['title_head'] = 'Create Article';
 
         return view('articles.create', isset($data) ? $data : NULL);
     }
@@ -50,7 +50,7 @@ class ArticlesController extends Controller
      */
     public function store(CheckArticlesRequest $request)
     {
-        print_r($request); die;
+       // print_r($request); die;
 
         // lấy dữ liệu từ form
         $dulieu_tu_input = $request->all();

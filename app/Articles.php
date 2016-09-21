@@ -9,11 +9,11 @@ use Carbon\Carbon;
 class Articles extends Model
 {
     protected $fillable = [
-        'author', 'name', 'created_at'
+        'author', 'title', 'content'
     ];
 
-    public function setCreatedAtAttribute($date) {
-        $this->arttributes['create_at'] = Carbon::createFromFormat('Y-m-d', $date);
-    }
+//    public function setCreatedAtAttribute($date) {
+//        $this->arttributes['create_at'] = Carbon::createFromFormat('Y-m-d', $date);
+//    }
     
 }
