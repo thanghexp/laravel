@@ -17,15 +17,18 @@
     <link href="{!! asset('vendors/nprogress/nprogress.css') !!}" rel="stylesheet">
     <!-- iCheck -->
     <link href="{!! asset('vendors/iCheck/skins/flat/green.css') !!}" rel="stylesheet">
+    <link href="{!! asset('build/css/custom.min.css') !!}" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{!! asset('vendors/iCheck/skins/flat/green.css') !!}" rel="stylesheet">
     <!-- bootstrap-progressbar -->
     <link href="{!! asset('vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') !!}" rel="stylesheet">
     <!-- JQVMap -->
     <link href="{!! asset('vendors/jqvmap/dist/jqvmap.min.css') !!}" rel="stylesheet"/>
 
     <!-- Custom Theme Style -->
-    <link href="{!! asset('build/css/custom.min.css') !!}" rel="stylesheet">
 
-    <link href="{!! asset('css/admin.css') !!}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
   </head>
 
   <body class="nav-md">
@@ -56,7 +59,7 @@
 
             <div class="clearfix"></div>
               @yield('content')
-          </div>
+            </div>
           <div class="clearfix"></div>
         </div>
 
@@ -105,6 +108,20 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{!! asset('build/js/custom.min.js') !!}"></script>
+
+    <script src="{!! asset('vendors/jquery/dist/jquery.min.js') !!}"></script>
+    <!-- Bootstrap -->
+    <script src="{!! asset('vendors/bootstrap/dist/js/bootstrap.min.js') !!}"></script>
+    <!-- FastClick -->
+    <script src="{!! asset('vendors/fastclick/lib/fastclick.js') !!}"></script>
+    <!-- NProgress -->
+    <script src="{!! asset('vendors/nprogress/nprogress.js') !!}"></script>
+    <!-- iCheck -->
+    <script src="{!! asset('vendors/iCheck/icheck.min.js') !!}"></script>
+
+
+
+    <!-- Custom Theme Scripts -->
 
     <!-- Flot -->
     <script>

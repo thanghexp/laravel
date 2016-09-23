@@ -17,7 +17,7 @@
             </div>
         </div>
         <!-- /menu profile quick info -->
-        <br />
+        <br/>
         <!-- sidebar menu -->
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
@@ -25,14 +25,20 @@
                 <ul class="nav side-menu">
                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{URL::to('/layout/admin/dashboard')}}">Dashboard</a></li>
+                            <li><a href="{{URL::to('Admin/home/index')}}">Dashboard</a></li>
 
                         </ul>
                     </li>
                     <li><a><i class="fa fa-edit"></i> Manage Article <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{URL::to('/articles/create')}}">Create article</a></li>
-                            <li><a href="{{URL::to('/articles')}}">Manage Articles</a></li>
+                            <li><a href="{{URL::to('Admin/articles/create')}}">Create Article</a></li>
+                            <li><a href="{{URL::to('Admin/articles')}}">Manage Articles</a></li>
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-edit"></i> Manage Article <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{URL::to('Admin/notes/create')}}">Create Notes</a></li>
+                            <li><a href="{{URL::to('Admin/notes')}}">Manage Notes</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-edit"></i> Manage Users <span class="fa fa-chevron-down"></span></a>
