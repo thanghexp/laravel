@@ -26,33 +26,38 @@ Route::get('ThemSanPham', function(){
 
 Route::group(['prefix' => 'Admin', 'namespace' => 'Admin'], function()
 {
-    Route::get('/articles', 'ArticlesController@index');
-    Route::get('/articles/create', 'ArticlesController@create');
-    Route::post('/articles/create', 'ArticlesController@store');
-    Route::post('/articles/delete', 'ArticlesController@delete');
-    Route::get('Admin/notes', 'NotesController@index');
+    Route::resource('articles', 'ArticlesController');
+    Route::get('articles/{article}/index', 'ArticlesController@index');
+
+    Route::get('/home', 'HomeController@index');
+
 });
 
+// Routes Home
+Route::get('home/index', 'HomeController@index');
+Route::get('articles/index', 'ArticlesController@index');
+
 // Route Notes 
-Route::get('Admin/notes', 'Admin/NotesController@index');
-Route::get('Admin/notes/create', 'Admin/NotesController@create');
-Route::get('Admin/notes/update', 'Admin/NotesController@update');
-Route::get('Admin/notes/show', 'Admin/NotesController@show');
-Route::get('Admin/notes/store', 'Admin/NotesController@store');
+//Route::get('Admin/notes', 'Admin/NotesController@index');
+//Route::get('Admin/notes/create', 'Admin/NotesController@create');
+//Route::get('Admin/notes/update', 'Admin/NotesController@update');
+//Route::get('Admin/notes/show', 'Admin/NotesController@show');
+//Route::get('Admin/notes/store', 'Admin/NotesController@store');
 
 
 // Route Home
-Route::get('Admin/home', 'Admin/HomeController@index');
+//Route::get('Admin/home', 'Admin/HomeController@index');
 
 //Route::resource('articles', 'ArticlesController');
-Route::resource('Admin/customers', 'Admin/CustomersController');
+//Route::resource('Admin/customers', 'Admin/CustomersController');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController'
 ]);
 
-Route::get('Admin/users', 'Admin/UsersController@index');
+
+//Route::get('Admin/users', 'Admin/UsersController@index');
 
 Route::get('demo', function(){
     return view('layout.Admin.dashboard');

@@ -4,21 +4,27 @@ namespace App\Http\Controllers\Admin;
 
 use App\Articles;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CheckArticlesRequest;
-use App\Http\Requests\Request;
 
 class ArticlesController extends Controller
 {
+    public $title_head = 'ARTICLES';
+    
     /**
      *  Get list of articles 15-09
      *
      **/
-    public function index()
+    public function index($article = '')
     {
-        $data['title_head'] = 'ARTICLES';
+        $data['title_head'] = $this->title_head;
         $data['articles'] = Articles::paginate(10);
-
+        
+        if(isset($article) && !empty($article)) {
+            $data['row_article'] = Articles::findOrFail($article);
+        }
+        
         return view("admin.articles.index", $data);
     }
 
@@ -26,8 +32,13 @@ class ArticlesController extends Controller
      * Show info
      *
      */
-    public function show()
+    public function show($articles)
     {
+        if(isset($articles)) {
+            $articles = new Articles();
+            //$data = $articles->findOrFail($articles);
+
+        }
 
     }
 
@@ -39,7 +50,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        $data['title_head'] = 'Create Article';
+        $data['title_head'] = $this->title_head;
 
         return view('admin.articles.create', isset($data) ? $data : NULL);
     }
@@ -52,8 +63,6 @@ class ArticlesController extends Controller
      */
     public function store(CheckArticlesRequest $request)
     {
-        // print_r($request); die;
-
         // lấy dữ liệu từ form
         $dulieu_tu_input = $request->all();
 
@@ -70,11 +79,12 @@ class ArticlesController extends Controller
      * @param object $article
      * @return view
      */
-    public function edit($id)
+    public function edit($articles)
     {
-        $articles = Articles::findOrFail($id);
+        $data['row_article'] = Articles::findOrFail($articles);
+        $data['title_head'] =  $this->title_head;
 
-        return view('Admin.articles.edit', compact('articles'));
+        return view('Admin.articles.edit', $data);
     }
 
     /**
@@ -83,13 +93,12 @@ class ArticlesController extends Controller
      * @param array $data
      * @return
      */
-    public function update($id, CheckArticlesRequest $request)
+    public function update($articles, CheckArticlesRequest $request)
     {
-        $article = Articles::findOrFail($id);
-
+        $article = Articles::findOrFail($articles);
         $article->update($request->all());
 
-        return redirect('edit');
+        return redirect('Admin/articles');
     }
 
     /**
@@ -97,13 +106,21 @@ class ArticlesController extends Controller
      * @param array $ids
      * @return void
      */
-    public function delete(Request $request)
+    public function destroy(Request $request)
     {
-        die;
-        if($request->isMethod('POST')) {
-            $data = $request->input();
-            print_r($data);
+        if($request->isMethod('DELETE')) {
+            $ids = $request->input('data');
+            $id = $request->input('id');
+
+            if(isset($ids) && is_array($ids)) {
+                foreach($ids as $id) {
+                    Articles::findOrFail($id)->delete($id);
+                }
+            } else {
+                Articles::findOrFail($id)->delete($id);
+            }
         }
+
     }
 
 }
