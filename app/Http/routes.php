@@ -24,17 +24,45 @@ Route::get('ThemSanPham', function(){
     $sanpham->TenSP = "San Pham";
     $sanpham->HinhSP = "abcabc";
     $sanpham->Gia = 1000;
-    $sanpham->save();
+    $sanpham->save(); 
     echo 'Da them san pham';
 });
 
-//Route::get('articles', 'ArticlesController@index');
-//Route::get('articles/create', 'ArticlesController@create');
-//Route::post('articles/create', 'ArticlesController@store');
+Route::group(['prefix' => 'Admin', 'namespace' => 'Admin'], function()
+{
+    Route::resource('articles', 'ArticlesController');
+    Route::get('articles/{article}/index', 'ArticlesController@index');
 
-Route::resource('articles', 'ArticlesController');
+    Route::get('/home', 'HomeController@index');
+
+});
+
+// Routes Home
+Route::get('home/index', 'HomeController@index');
+Route::get('articles/index', 'ArticlesController@index');
+
+// Route Notes 
+//Route::get('Admin/notes', 'Admin/NotesController@index');
+//Route::get('Admin/notes/create', 'Admin/NotesController@create');
+//Route::get('Admin/notes/update', 'Admin/NotesController@update');
+//Route::get('Admin/notes/show', 'Admin/NotesController@show');
+//Route::get('Admin/notes/store', 'Admin/NotesController@store');
+
+
+// Route Home
+//Route::get('Admin/home', 'Admin/HomeController@index');
+
+//Route::resource('articles', 'ArticlesController');
+//Route::resource('Admin/customers', 'Admin/CustomersController');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController'
 ]);
+
+
+//Route::get('Admin/users', 'Admin/UsersController@index');
+
+Route::get('demo', function(){
+    return view('layout.Admin.dashboard');
+});

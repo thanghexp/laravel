@@ -1,6 +1,7 @@
 <?php
-
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
+use App\Customer;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +12,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        Model::unguard();
+        DB::table('customers')->delete();
+        $this->call(CustomersTableSeeder::class);
+        Model::reguard();
+    }
+
+
+}
+
+
+class CustomersTableSeeder extends Seeder {
+
+    public function run()
+    {
+        $faker = Faker\Factory::create();
+        foreach(range(1, 50) as $index)
+        {
+            Customer::create([
+                'name' => $faker->name,
+                'age' => $faker->randomNumber(2),
+                'phone' => $faker->phoneNumber
+            ]);
+
+        }
     }
 }
